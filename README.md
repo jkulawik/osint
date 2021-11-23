@@ -9,7 +9,7 @@ Find top level domains:
 * RIPE
 * Spyse.com
 
-Store TLDs in a file (`subs` will be used in command examples).
+Store TLDs in a file (`tlds` will be used in command examples).
 
 Gather subdomains for one TLD:
 * `sublist3r -d example.org -o subl.txt`
@@ -17,8 +17,8 @@ Gather subdomains for one TLD:
 * `amass enum -d example.org -o amass.txt`
 
 Bulk TLD subdomain gathering:
-* `subfinder -dL subs -o subf.txt`
-* `amass enum -df subs -o amass.txt`
+* `subfinder -dL tlds -o subf.txt`
+* `amass enum -df tlds -o amass.txt`
 
 Gather all domains in one file: `*.txt >> all.subs`
 
