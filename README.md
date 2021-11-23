@@ -20,7 +20,7 @@ Bulk TLD subdomain gathering:
 * `subfinder -dL tlds -o subf.txt`
 * `amass enum -df tlds -o amass.txt`
 
-Gather all domains in one file: `*.txt >> all.subs`
+Gather all domains in one file: `cat *.txt >> all.subs`
 
 Get unique subs: `sort -u all.subs > unique.subs`
 
