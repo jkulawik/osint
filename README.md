@@ -11,33 +11,34 @@ Check leaks on these websites:
 
 ## Subdomain enumeration
 
-Find top level domains:
+Find domains:
 * Company websites
 * RIPE (also IP blocks - always validate whether they belong to client though)
 * Spyse.com
+* crt.sh
 
-Store TLDs in a file (`tlds` will be used in command examples).
-
-Gather subdomains for one TLD:
+Gather subdomains for a single domain:
 * `sublist3r -d example.org -o subl.txt`
 * `subfinder -d example.org -o subf.txt`
 * `amass enum -d example.org -o amass.txt`
 
-Bulk TLD subdomain gathering:
-* `subfinder -dL tlds -o subf.txt`
-* `amass enum -df tlds -o amass.txt`
+Bulk subdomain gathering from a list file:
+* `subfinder -dL domains -o subf.txt`
+* `amass enum -df domains -o amass.txt`
 
 Gather all domains in one file: `cat *.txt >> all.subs`
 
 Get unique subs: `sort -u all.subs > unique.subs`
 
-Passive nmap pseudoscan to check which domains point to IPs (+grep to only save resolved ones): `nmap -sL -iL unique.subs | grep Nmap > resolved.nmap`
+Passive nmap pseudoscan to check which domains point to IPs: `nmap -sL -iL unique.subs -oN resolved.nmap`
 
 Use a text editor or smth else to remove unneeded text via regex. This can also be used to replace that text with commas and make the file work as CSV with subdomain names and IPs.
 
 ## Shodan
 
-Look up open ports, tech and potential vulns on Shodan. Extract unique IPs from subdomain recon and the use https://github.com/emresaglam/shodan-bulk-ip-query. The code needs tailoring and writing a parser though.
+Look up open ports, tech and potential vulns on Shodan. Extract unique IPs from subdomain recon and then use https://github.com/emresaglam/shodan-bulk-ip-query. The code needs tailoring and writing a parser though.
+
+Alternatively, [nrich](https://gitlab.com/shodan-public/nrich) can be used. Unfortunately it lists ports and CVEs on a per IP basis, making it harder to do meaningful analysis of the results.
 
 ## Manual testing
 
