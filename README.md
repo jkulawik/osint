@@ -3,11 +3,8 @@
 Recipes for open source intelligence.
 
 ## Leaks
-
-Check leaks on these websites:
 * [IntelX](https://intelx.io)
 * [Dehashed](https://dehashed.com)
-* [haveibeenpwned.com](https://haveibeenpwned.com/) (desperate)
 
 ## Subdomain enumeration
 
@@ -16,6 +13,7 @@ Find domains:
 * RIPE (also IP blocks - always validate whether they belong to client though)
 * Spyse.com
 * crt.sh
+* whois, perhaps
 
 Gather subdomains for a single domain:
 * `sublist3r -d example.org -o subl.txt`
@@ -30,9 +28,9 @@ Gather all domains in one file: `cat *.txt >> all.subs`
 
 Get unique subs: `sort -u all.subs > unique.subs`
 
-Passive nmap pseudoscan to check which domains point to IPs: `nmap -sL -iL unique.subs -oN resolved.nmap`
+Try to resolve addresses with nmap to check which sites are still up: `nmap -sL -iL unique.subs -oN resolved.nmap`
 
-Use a text editor or smth else to remove unneeded text via regex. This can also be used to replace that text with commas and make the file work as CSV with subdomain names and IPs.
+Use a text editor or smth else to convert to CSV.
 
 ## Shodan
 
@@ -40,7 +38,25 @@ Look up open ports, tech and potential vulns on Shodan. Extract unique IPs from 
 
 Alternatively, [nrich](https://gitlab.com/shodan-public/nrich) can be used. Unfortunately it lists ports and CVEs on a per IP basis, making it harder to do meaningful analysis of the results.
 
-## Manual testing
+```
+nrich -o ndjson ip_file > nrich.json
+```
+
+Convert to CSV.
+
+## Semi-active website recon
+
+* wafw00f
+* wpscan in passive mode
+* eyewitness: `eyewitness --jitter 3 --delay 2 --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:104.0) Gecko/20100101 Firefox/104.0" -d output_dir -f urls.txt`. Accepts nmap input!
+
+## Active website recon
+
+* skipfish? Creates interactive reports and does crawling
+* nikto (slow and results are rarely good)
+* whatweb -- identifies web technologies, including CMS and a bunch of other stuff
+
+## Manual website recon
 
 Check for Wordpress installations:
 * `/wp-admin/`
