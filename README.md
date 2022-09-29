@@ -52,6 +52,7 @@ Convert to CSV.
 * wpscan in passive mode
 * eyewitness: `eyewitness --jitter 3 --delay 2 --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:104.0) Gecko/20100101 Firefox/104.0" -d output_dir -f urls.txt`. Accepts nmap input!
 * URL wordlist attack with `dirb` (requires scripting to do en masse because normally dirb only accepts single domains). Check out dirb and dirbuster wordlists for this
+* If the server software can be determined, `/wordlists/dirb/vulns/` has vuln-related URLs to scan for Apache, IIS etc.
 
 ## Active website recon
 
