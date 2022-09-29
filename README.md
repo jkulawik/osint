@@ -24,6 +24,8 @@ Bulk subdomain gathering from a list file:
 * `subfinder -dL domains -o subf.txt`
 * `amass enum -df domains -o amass.txt`
 
+Use `dnsenum` or `dnsrecon` with amass wordlists (`wordlists` prints their location) to brute force domains.
+
 Gather all domains in one file: `cat *.txt >> all.subs`
 
 Get unique subs: `sort -u all.subs > unique.subs`
@@ -49,6 +51,7 @@ Convert to CSV.
 * wafw00f
 * wpscan in passive mode
 * eyewitness: `eyewitness --jitter 3 --delay 2 --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:104.0) Gecko/20100101 Firefox/104.0" -d output_dir -f urls.txt`. Accepts nmap input!
+* URL wordlist attack with `dirb` (requires scripting to do en masse because normally dirb only accepts single domains). Check out dirb and dirbuster wordlists for this
 
 ## Active website recon
 
