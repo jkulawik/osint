@@ -24,7 +24,7 @@ Bulk subdomain gathering from a list file:
 * `subfinder -dL domains -o subf.txt`
 * `amass enum -df domains -o amass.txt`
 
-Use `dnsenum` or `dnsrecon` with amass wordlists (`wordlists` prints their location) to brute force domains.
+Use `dnsenum` or `dnsrecon` with amass wordlists (`wordlists` prints their location) to brute force subdomains.
 
 Gather all domains in one file: `cat *.txt >> all.subs`
 
@@ -38,27 +38,25 @@ Use a text editor or smth else to convert to CSV.
 
 Look up open ports, tech and potential vulns on Shodan. Extract unique IPs from subdomain recon and then use https://github.com/emresaglam/shodan-bulk-ip-query. The code needs tailoring and writing a parser though.
 
-Alternatively, [nrich](https://gitlab.com/shodan-public/nrich) can be used. Unfortunately it lists ports and CVEs on a per IP basis, making it harder to do meaningful analysis of the results.
+Alternatively, [nrich](https://gitlab.com/shodan-public/nrich) can be used. User the `ndjson` format to easily convert it to CSV later. 
 
 ```
 nrich -o ndjson ip_file > nrich.json
 ```
 
-Convert to CSV.
-
 ## Semi-active website recon
 
 * wafw00f
+* whatweb -- identifies web technologies, including CMS and a bunch of other stuff
 * wpscan in passive mode
 * eyewitness: `eyewitness --jitter 3 --delay 2 --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:104.0) Gecko/20100101 Firefox/104.0" -d output_dir -f urls.txt`. Accepts nmap input!
-* URL wordlist attack with `dirb` (requires scripting to do en masse because normally dirb only accepts single domains). Check out dirb and dirbuster wordlists for this
-* If the server software can be determined, `/wordlists/dirb/vulns/` has vuln-related URLs to scan for Apache, IIS etc.
+* URL wordlist attack with `gobuster dir` or `dirb` (requires scripting to do en masse because they normally only accepts single domains). Check out dirb and dirbuster wordlists for this
+* If the server software can be determined, `/wordlists/dirb/vulns/` has vuln-related URLs to scan for Apache, IIS etc (also use `gobuster`).
 
-## Active website recon
+## Website scanners
 
 * skipfish? Creates interactive reports and does crawling
 * nikto (slow and results are rarely good)
-* whatweb -- identifies web technologies, including CMS and a bunch of other stuff
 
 ## Manual website recon
 
