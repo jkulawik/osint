@@ -44,7 +44,7 @@ nrich -o ndjson ip_file > nrich.json
 ```
 
 ```
-sed 's/{"cpes"://g; s/"hostnames"://g; s/"ip"://g; s/"ports"://g; s/"tags"://g; s/"vulns"://g; s/}//g' nrich.json > nrich.csv
+sed 's/{"cpes"://g; s/,"hostnames":/\t/g; s/,"ip":/\t/g; s/,"ports":/\t/g; s/,"tags":/\t/g; s/,"vulns":/\t/g; s/}//g' nrich.json > nrich.csv
 ```
 
 ## Semi-active website recon
