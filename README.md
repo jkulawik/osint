@@ -38,10 +38,13 @@ Use a text editor or smth else to convert to CSV.
 
 Look up open ports, tech and potential vulns on Shodan. Extract unique IPs from subdomain recon and then use https://github.com/emresaglam/shodan-bulk-ip-query. The code needs tailoring and writing a parser though.
 
-Alternatively, [nrich](https://gitlab.com/shodan-public/nrich) can be used. User the `ndjson` format to easily convert it to CSV later. 
-
+Alternatively, [nrich](https://gitlab.com/shodan-public/nrich) can be used. User the `ndjson` format to easily convert it to CSV with `sed`:
 ```
 nrich -o ndjson ip_file > nrich.json
+```
+
+```
+sed 's/{"cpes"://g; s/"hostnames"://g; s/"ip"://g; s/"ports"://g; s/"tags"://g; s/"vulns"://g; s/}//g' nrich.json > nrich.csv
 ```
 
 ## Semi-active website recon
